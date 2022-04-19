@@ -1,4 +1,4 @@
-pragma solidity 0.8.13;
+pragma solidity 0.5.6;
 
 import "./ERC721/ERC721.sol";
 import "./ERC721/ERC721Enumerable.sol";
@@ -50,13 +50,56 @@ contract Onstargram is ERC721, ERC721Enumerable {
         _photoList[tokenId] = newPhotoData;
         _photoList[tokenId].ownerHistory.push(msg.sender);
 
-        emit PhotoUploaded(
-            tokenId,
-            photo,
-            title,
-            location,
-            description,
-            timestamp
+        emit PhotoUploaded(tokenId, photo, title, location, description, now);
+    }
+
+    function transferOwnership(uint256 tokenId, address to)
+        public
+        returns (
+            uint256,
+            address,
+            address,
+            address
+        )
+    {
+        safeTransferFrom(msg.sender, to, tokenId);
+    }
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public {
+        super.transferFrom(from, to, tokenId);
+        _photoList[tokenId].ownerHistory.push(to);
+    }
+
+    function getTotalPhotoCount() public view returns (uint256) {
+        return totalSupply();
+    }
+
+    function getPhoto(uint256 tokenId)
+        public
+        view
+        returns (
+            uint256,
+            address[] memory,
+            bytes memory,
+            string memory,
+            string memory,
+            string memory,
+            uint256
+        )
+    {
+        require(_photoList[tokenId].tokenId != 0, "Photo doesn't exist");
+        return (
+            _photoList[tokenId].tokenId,
+            _photoList[tokenId].ownerHistory,
+            _photoList[tokenId].photo,
+            _photoList[tokenId].title,
+            _photoList[tokenId].location,
+            _photoList[tokenId].description,
+            _photoList[tokenId].timestamp
         );
     }
 }
