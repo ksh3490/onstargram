@@ -1,4 +1,6 @@
+import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
+import "@typechain/hardhat";
 import "dotenv/config";
 import { HardhatUserConfig } from 'hardhat/types';
 import 'hardhat-deploy';
@@ -18,6 +20,14 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {},
+    klaytn: {
+      url: 'https://api.baobab.klaytn.net:8651',
+      gasPrice: 750000000000,
+      accounts: [
+        process.env.DEVELOPER || ''
+      ],
+      chainId: 1001
+    },
     baobab: {
       url: process.env.BAOBAB_URL,
       httpHeaders: {
@@ -29,7 +39,7 @@ const config: HardhatUserConfig = {
       ],
       chainId: 1001,
       gas: 8500000,
-      gasPrice: 8500000,
+      gasPrice: 750000000000,
     }
   },
   mocha: {
