@@ -29,7 +29,7 @@ const config: HardhatUserConfig = {
       chainId: 1001
     },
     baobab: {
-      url: process.env.BAOBAB_URL,
+      url: process.env.BAOBAB_RPC_URL,
       httpHeaders: {
         'Authorization': 'Basic ' + Buffer.from(process.env.ACCESS_KEY_ID + ':' + process.env.SECRET_ACCESS_KEY).toString('base64'),
         'x-chain-id': '1001',
