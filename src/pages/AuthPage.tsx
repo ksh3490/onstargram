@@ -8,3 +8,5 @@ const AuthPage = () => (
     <AuthForm />
   </main>
 )
+
+export default AuthPage
