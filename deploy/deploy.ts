@@ -15,10 +15,10 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address);
   console.log(`Account balance: ${(await deployer.getBalance()).toString()}`)
 
-  const Onstar = await ethers.getContractFactory("Onstargram");
-  const onstar = await Onstar.deploy();
+  const Onsta = await ethers.getContractFactory("Onstagram");
+  const onsta = await Onsta.deploy();
 
-  console.log(`Onstar address: ${onstar.address}`)
+  console.log(`Onsta address: ${onsta.address}`)
 
 
   // const network = config.networks[process.env.HARDHAT_NETWORK as string] as HttpNetworkUserConfig;

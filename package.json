@@ -1,5 +1,5 @@
 {
-  "name": "onstargram",
+  "name": "onstagram",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,18 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ksh3490/onstargram.git"
+    "url": "git+https://github.com/ksh3490/onstagram.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ksh3490/onstargram/issues"
+    "url": "https://github.com/ksh3490/onstagram/issues"
   },
-  "homepage": "https://github.com/ksh3490/onstargram#readme",
+  "homepage": "https://github.com/ksh3490/onstagram#readme",
   "dependencies": {
     "caver-js": "^1.6.5",
     "classnames": "^2.2.5",
+    "moment": "^2.23.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.1",

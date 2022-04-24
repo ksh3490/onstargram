@@ -3,7 +3,7 @@ pragma solidity 0.5.6;
 import "./ERC721/ERC721.sol";
 import "./ERC721/ERC721Enumerable.sol";
 
-contract Onstargram is ERC721, ERC721Enumerable {
+contract Onstagram is ERC721, ERC721Enumerable {
     event PhotoUploaded(
         uint256 indexed tokenId,
         bytes photo,

@@ -7,6 +7,7 @@ import Button from './Button'
 import * as authActions from '../redux/actions/auth'
 
 import './LoginForm.scss'
+
 class LoginForm extends Component {
   state = {
     privateKey: '',
@@ -41,9 +42,17 @@ class LoginForm extends Component {
           err={warningMessage}
         />
         <Button
-
+          className="LoginForm__button"
+          title="Log in"
+          onClick={this.handleLogin}
         />
       </div>
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  login: (privateKey: string) => dispatch(authActions.login(privateKey)),
+})
+
+export default connect(null, mapDispatchToProps)(LoginForm)

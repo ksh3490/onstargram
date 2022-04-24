@@ -3,6 +3,18 @@ import cx from 'classnames';
 
 import './Input.scss';
 
+interface Iinput {
+  className: string,
+  type: string,
+  name: string,
+  label: string,
+  value?: string,
+  onChange: React.ChangeEventHandler<HTMLInputElement>,
+  placeholder: string,
+  err: string,
+  readOnly?: boolean,
+}
+
 const Input = ({
   className,
   type,
@@ -13,7 +25,7 @@ const Input = ({
   placeholder,
   err,
   readOnly,
-}) => (
+}: Iinput) => (
   <div className={cx('Input', className)}>
     {
       label &&
