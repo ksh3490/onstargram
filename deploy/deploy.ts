@@ -3,6 +3,7 @@ import "@nomiclabs/hardhat-waffle";
 import "dotenv/config";
 import { config, getNamedAccounts } from 'hardhat';
 import { HttpNetworkUserConfig } from "hardhat/src/types/config";
+import fs from "fs";
 
 // import CaverExtKAS from "caver-js-ext-kas";
 import Caver from 'caver-js';
@@ -19,6 +20,15 @@ async function main() {
   const onsta = await Onsta.deploy();
 
   console.log(`Onsta address: ${onsta.address}`)
+
+  fs.writeFile(
+    'deployedAddress',
+    deployer.address,
+    (err) => {
+      if (err) throw err
+      console.log(`The deployed contract address * ${deployer.address} * is recorded on deployedAddress file`)
+    }
+  )
 
 
   // const network = config.networks[process.env.HARDHAT_NETWORK as string] as HttpNetworkUserConfig;
