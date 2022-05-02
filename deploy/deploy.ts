@@ -1,33 +1,35 @@
-import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
 import "dotenv/config";
-import { config, getNamedAccounts } from 'hardhat';
+import { ethers, config, getNamedAccounts } from 'hardhat';
 import { HttpNetworkUserConfig } from "hardhat/src/types/config";
 import fs from "fs";
 
 // import CaverExtKAS from "caver-js-ext-kas";
 import Caver from 'caver-js';
-import { ethers } from "hardhat";
 
 async function main() {
 
   const [deployer] = await ethers.getSigners();
 
+  const Onsta = await ethers.getContractFactory("Onstagram");
+  const onsta = await Onsta.deploy()
+
   console.log("Deploying contracts with the account:", deployer.address);
   console.log(`Account balance: ${(await deployer.getBalance()).toString()}`)
-
-  const Onsta = await ethers.getContractFactory("Onstagram");
-  const onsta = await Onsta.deploy();
-
   console.log(`Onsta address: ${onsta.address}`)
 
-  fs.writeFile(
+  if (onsta.interface) {
+    // 1. Record recently deployed contract's abi file to 'deployedABI'
+    fs.writeFileSync(
+      'deployedABI.json',
+      JSON.stringify(onsta.interface)
+    )
+  }
+
+  // 2. Record recently deployed contract's address to 'deployedAddress'
+  fs.writeFileSync(
     'deployedAddress',
-    deployer.address,
-    (err) => {
-      if (err) throw err
-      console.log(`The deployed contract address * ${deployer.address} * is recorded on deployedAddress file`)
-    }
+    onsta.address
   )
 
 
